@@ -1,0 +1,9 @@
+---
+applications:
+- instances: 1
+  timeout: 180
+  name: xcedrin
+  buildpack: java_buildpack
+  path: ./target/xcedrin-0.0.1.jar
+  memory: 256M
+  random-route: true
