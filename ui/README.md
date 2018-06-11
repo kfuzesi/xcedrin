@@ -2,11 +2,15 @@ Xcedrin UI
 ---
 
 Installation
+
+After cloning, install dependencies:
 ```
 yarn install
 ```
 
-Run
+Usage
+
+To run the server:
 ```
 yarn start
 ```

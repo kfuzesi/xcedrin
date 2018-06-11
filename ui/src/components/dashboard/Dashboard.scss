@@ -1,0 +1,21 @@
+@import 'styles/variables';
+
+.dashboard {
+  height: 100%;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 500px auto;
+  grid-template-areas:
+  "summary table";
+}
+
+.dashboard-summary {
+  grid-area: summary;
+  background: indianred;
+}
+
+.dashboard-table {
+  grid-area: table;
+  background: cornsilk;
+}
+
