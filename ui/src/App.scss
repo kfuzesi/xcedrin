@@ -1,5 +1,6 @@
 $font-prefix: '../node_modules/@ibm/plex';
 @import 'node_modules/@ibm/plex/scss/ibm-plex.scss';
+@import 'carbon-components/scss/globals/scss/styles.scss';
 @import 'styles/variables';
 
 .app {
@@ -24,7 +25,7 @@ $font-prefix: '../node_modules/@ibm/plex';
   background: white;
 
   h1 {
-    font-size: 3.0em;
+    font-size: 2.5em;
     color: #009bee;
     height: 100%;
     display: flex;
@@ -52,7 +53,7 @@ $font-prefix: '../node_modules/@ibm/plex';
 
   .navbar-route {
     text-transform: uppercase;
-    font-size: 1.8em;
+    font-size: 1.25em;
     color: #454545;
   }
 }

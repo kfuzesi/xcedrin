@@ -3,6 +3,9 @@ import { BrowserRouter as Router, Route, Redirect, Switch, Link} from 'react-rou
 import './App.css';
 
 import Dashboard from './components/dashboard/Dashboard';
+import Demand from './components/demand/Demand';
+import Settings from './components/settings/Settings';
+import Support from './components/support/Support';
 
 class App extends Component {
   render() {
@@ -14,17 +17,17 @@ class App extends Component {
           <div className="app-navbar">
             <ul className="navbar-route-list">
               <li className="navbar-route"><Link to="/dashboard">Dashboard</Link></li>
-              <li className="navbar-route"><Link to="/dashboard">Demand</Link></li>
-              <li className="navbar-route"><Link to="/dashboard">Settings</Link></li>
-              <li className="navbar-route"><Link to="/dashboard">Support</Link></li>
+              <li className="navbar-route"><Link to="/demand">Demand</Link></li>
+              <li className="navbar-route"><Link to="/settings">Settings</Link></li>
+              <li className="navbar-route"><Link to="/support">Support</Link></li>
             </ul>
           </div>
 
           <Switch>
             <Route path="/dashboard" exact={true} component={Dashboard} />
-            {/* <Route path="/demand" exact={true} component={Demand} />
+            <Route path="/demand" exact={true} component={Demand} />
             <Route path="/settings" exact={true} component={Settings} />
-            <Route path="/support" exact={true} component={Support} /> */}
+            <Route path="/support" exact={true} component={Support} />
             <Route path="/" exact={true} render={() => (<Redirect to="/dashboard"/>)} />
             <Route render={() => (<h1>404</h1>)} />
           </Switch>
