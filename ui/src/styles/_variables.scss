@@ -1,0 +1,79 @@
+// Fonts
+$plex-mono: 'IBM Plex Mono', 'Menlo', 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', Courier, monospace;
+$plex-sans: 'IBM Plex Sans', 'Helvetica Neue', Arial, sans-serif;
+$plex-sans-condensed: 'IBM Plex Sans Condensed', 'Helvetica Neue', Arial, sans-serif;
+$plex-serif: 'IBM Plex Serif', 'Georgia', Times, serif;
+
+// $main-color: rgba(0, 0, 0, .87);
+$main-color: #414b56;
+%headline {
+  color: $main-color;
+  font-size: 28px;
+}
+%title-bold {
+  color: $main-color;
+  font-size: 24px;
+}
+%title {
+  color: $main-color;
+  font-size: 20px;
+  font-weight: medium;
+}
+%subheader {
+  color: $main-color;
+  font-size: 18px;
+}
+%subheader-caps {
+  color: $main-color;
+  font-size: 18px;
+  font-weight: medium;
+  text-transform: uppercase;
+}
+%body-bold {
+  color: $main-color;
+  font-size: 16px;
+  font-weight: medium;
+}
+%body {
+  color: $main-color;
+  font-size: 16px;
+}
+%caption {
+  color: rgba(0, 0, 0, .54);
+  font-size: 28px;
+}
+%link {
+  color: #009BEF;
+  opacity: .87;
+}
+
+// Colors
+$xcedrin-primary-blue: #009BEF;
+$xcedrin-primary-purp: #009BEF;
+$xcedrin-primary-turq: #009BEF;
+$xcedrin-primary-navy: #009BEF;
+$xcedrin-primary-gray: #009BEF;
+$xcedrin-primary-white: #009BEF;
+
+$xcedrin-secondary-gray: #73808E;
+$xcedrin-secondary-navy: #325C80;
+$xcedrin-secondary-red: #EB5464;
+$xcedrin-secondary-yellow: #EFC100;
+
+$xcedrin-halftint-blue: #009BEF;
+$xcedrin-halftint-blue-light: #98D5F7;
+$xcedrin-halftint-purp: #7732BB;
+$xcedrin-halftint-purp-light: #B4EAE9;
+$xcedrin-halftint-turq: #00BEB8;
+$xcedrin-halftint-turq-light: #B4EAE9;
+$xcedrin-halftint-gray: #73808E;
+$xcedrin-halftint-gray-light: #9DACBD;
+$xcedrin-halftint-navy: #325C80;
+$xcedrin-halftint-navy-light: #7195B5;
+$xcedrin-halftint-red: #EB5464;
+$xcedrin-halftint-red-light: #FFA5B4;
+$xcedrin-halftint-yellow: #ECF100;
+$xcedrin-halftint-yellow-light: #FDE876;
+
+$xcedrin-btn-hover: #4FBEFF;
+
