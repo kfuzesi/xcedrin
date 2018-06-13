@@ -12,7 +12,7 @@ class App extends Component {
     return (
       <Router>
         <div className="app">
-          <header className="app-header"><h1>Xcedrin</h1></header>
+          <header className="app-header"><h1><i className="fa fa-pills"></i>Xcedrin</h1></header>
 
           <div className="app-navbar">
             <ul className="navbar-route-list">
@@ -23,14 +23,16 @@ class App extends Component {
             </ul>
           </div>
 
-          <Switch>
-            <Route path="/dashboard" exact={true} component={Dashboard} />
-            <Route path="/demand" exact={true} component={Demand} />
-            <Route path="/settings" exact={true} component={Settings} />
-            <Route path="/support" exact={true} component={Support} />
-            <Route path="/" exact={true} render={() => (<Redirect to="/dashboard"/>)} />
-            <Route render={() => (<h1>404</h1>)} />
-          </Switch>
+          <div className="app-content">
+            <Switch>
+              <Route path="/dashboard" exact={true} component={Dashboard} />
+              <Route path="/demand" exact={true} component={Demand} />
+              <Route path="/settings" exact={true} component={Settings} />
+              <Route path="/support" exact={true} component={Support} />
+              <Route path="/" exact={true} render={() => (<Redirect to="/dashboard"/>)} />
+              <Route render={() => (<h1>404</h1>)} />
+            </Switch>
+          </div>
         </div>
       </Router>
     );

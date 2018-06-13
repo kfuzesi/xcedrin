@@ -11,11 +11,18 @@
 
 .dashboard-summary {
   grid-area: summary;
-  background: indianred;
+  display: flex;
+  justify-content: center;
 }
 
 .dashboard-table {
   grid-area: table;
-  background: cornsilk;
+
+  .table-title {
+  }
+
+  .demand-table {
+  }
 }
+
 

@@ -1,0 +1,60 @@
+@import 'styles/variables';
+
+.demand-builder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.builder-step-title {
+  @extend %headline;
+  font-size: 40px;
+  margin: 15px 0;
+}
+
+.builder-step-num {
+  font-size: 12px;
+  margin-left: 2px;
+  text-transform: uppercase;
+  text-align: center;
+  letter-spacing: 2px;
+}
+
+.builder-stage {
+  width: 100%;
+  display: flex;
+  padding-top: 40px;
+  padding-left: 50px;
+}
+
+.builder-nav {
+  position: absolute;
+  bottom: 50px;
+  margin: 25px 0;
+  padding: 15px;
+  width: 50%;
+  display: flex;
+  justify-content: flex-start;
+  color: rgba(0, 0, 0, .54);
+  user-select: none;
+
+  .builder-back {
+    margin-right: 100px;
+
+    &:hover {
+      cursor: pointer;
+      color: black;
+    }
+  }
+
+  .builder-forw {
+    margin-left: 100px;
+
+    &:hover {
+      cursor: pointer;
+      color: black;
+    }
+  }
+}

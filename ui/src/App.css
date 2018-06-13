@@ -15087,6 +15087,10 @@ span.flatpickr-weekday {
       transition: transform 250ms;
       transform-origin: center; }
 
+.app-header h1 {
+  color: #414b56;
+  font-size: 28px; }
+
 .app {
   font-family: "IBM Plex Sans", "Helvetica Neue", Arial, sans-serif;
   font-weight: 400;
@@ -15100,21 +15104,20 @@ span.flatpickr-weekday {
     text-decoration: none; }
 
 .app-header {
-  height: 75px;
+  height: 60px;
   background: white; }
   .app-header h1 {
-    font-size: 2.5em;
-    color: #009bee;
+    color: white;
+    background: #1e3649;
     height: 100%;
     display: flex;
     align-items: center;
-    margin-left: 75px; }
+    padding-left: 75px; }
 
 .app-navbar {
-  height: 65px;
-  background: #f8f8f8;
-  border-top: 2px solid #d5d5d5;
-  border-bottom: 2px solid #d5d5d5; }
+  height: 50px;
+  background: #f8f9fa;
+  border-bottom: 1px solid #d5d5d5; }
 
 .navbar-route-list {
   height: 100%;
@@ -15129,3 +15132,6 @@ span.flatpickr-weekday {
     text-transform: uppercase;
     font-size: 1.25em;
     color: #454545; }
+
+.app-content {
+  height: calc(100% - 60px - 50px); }
