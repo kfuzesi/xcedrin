@@ -1,6 +1,6 @@
 package com.xcedrin;
 
-public class Track {
+public class Requisition {
 	int name;
 	int profile;
 	int specialty;

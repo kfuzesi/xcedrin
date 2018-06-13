@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com</groupId>
-	<artifactId>xcedrin</artifactId>
+	<artifactId>xcedrin-api</artifactId>
 	<version>0.0.1</version>
 	<name>xcedrin</name>
 	<description>TA Demand and Fulfillment Tool</description>
