@@ -1,0 +1,43 @@
+@import 'styles/variables';
+
+.settings {
+  height: 100%;
+  display: grid;
+  grid-template-columns: 30% auto;
+  grid-template-areas: "navbar content";
+}
+
+.settings-content {
+  width: 100%;
+  grid-area: content;
+  height: calc(100vh - #{$header-height} - #{$navbar-height});
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding: 25px;
+  padding-right: 25%;
+  overflow-y: scroll;
+
+  .settings-content-title {
+    @extend %headline;
+    font-size: 40px;
+    margin: 15px 0;
+  }
+}
+
+$form-section-spacing: 30px;
+.from-group {
+  margin: $form-section-spacing 0;
+}
+
+.form-select {
+  margin: $form-section-spacing 0;
+}
+
+.form-text-input {
+  margin: $form-section-spacing 0;
+}
+
+.form-text-area {
+  margin: $form-section-spacing 0;
+}
