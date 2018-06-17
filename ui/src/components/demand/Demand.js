@@ -7,9 +7,26 @@ export default class Demand extends Component {
     super(props);
     this.state = {
       curSection: '',
+      pictures: [],
     };
   }
+  componentDidMount() {
+  fetch('http://localhost:8080/demands')
+  .then(results => {
+    return results.json();
+    }).then(data => {
+        let pictures = data.map((pic) => {
+            return (
+            <div>
+             <div>demand: {pic}</div>
+             </div>
+            )
+         })
+        this.setState({picture:pictures});
+        console.log("state was", this.state.pictures);
+    })
 
+  }
   render() {
     return(
       <div className="demand">
@@ -25,6 +42,7 @@ export default class Demand extends Component {
           <h2 className="demand-content-title">{this.state.curSection}</h2>
           <hr />
           {/* <DataTable></DataTable> */}
+          {this.state.pictures}
           <Builder></Builder>
         </div>
       </div>
