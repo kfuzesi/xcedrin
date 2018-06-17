@@ -1,0 +1,21 @@
+@import 'styles/variables';
+
+.navbar {
+  grid-area: navbar;
+  display: flex;
+  align-items: flex-start;
+  padding-left: 100px;
+  height: 50%;
+  margin-top: 50px;
+ 
+  .navbar-title {
+    @extend %title-bold;
+  } flex-direction: column;
+}
+
+.navbar-li {
+  @extend %subheader;
+  // font-size: 20px;
+  // font-weight: 300;
+  margin: 25px;
+}

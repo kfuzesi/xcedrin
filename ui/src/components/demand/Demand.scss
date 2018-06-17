@@ -18,17 +18,17 @@ hr {
   border-top: 1px solid rgba(0, 0, 0, .1);
 }
 
-.demand-navbar {
-  grid-area: navbar;
-  display: flex;
-  align-items: center;
-  height: 50%;
-  margin-top: 50px;
+// .demand-navbar {
+//   grid-area: navbar;
+//   display: flex;
+//   align-items: center;
+//   height: 50%;
+//   margin-top: 50px;
  
-  .demand-navbar-title {
-    @extend %title-bold;
-  } flex-direction: column;
-}
+//   .demand-navbar-title {
+//     @extend %title-bold;
+//   } flex-direction: column;
+// }
 
 .demand-content-title {
   width: 100%;
@@ -44,9 +44,9 @@ hr {
   padding: 25px;
 }
 
-.demand-li {
-  @extend %subheader;
-  // font-size: 20px;
-  // font-weight: 300;
-  margin: 25px;
-}
+// .demand-li {
+//   @extend %subheader;
+//   // font-size: 20px;
+//   // font-weight: 300;
+//   margin: 25px;
+// }
