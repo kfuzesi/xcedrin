@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './LocationStage.css';
 
 import { DropdownV2, NumberInput } from 'carbon-components-react';
+import Draft from '../../draft/Draft';
 
 function itemToString(item) {
   return item.name;
@@ -40,7 +41,8 @@ export default class LocationStage extends Component {
         </div>
         <div className="location-num-input">
           <NumberInput
-            className="location-num-positions"
+            id={`num-openings`}
+            className="location-num-openings"
             label="# Openings"
             // onChange={onChange()}
             // onClick={onClick()}

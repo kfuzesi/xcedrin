@@ -40,18 +40,17 @@ export default class CandidateStage extends Component {
           {fields.map((field) => {
             if (field.title == 'Other') {
               return(
-                <div className="position-section">
+                <div className="position-section" key={field.title}>
                   <div className="position-section-title">{field.title}</div>
-                  <div>Input field</div>
+                  {/* <div>Input field</div> */}
                 </div>
               )
             }
             else {
               return(
-                <div className="position-section">
+                <div className="position-section" key={field.title}>
                   <div className="position-section-title">{field.title}</div>
                   <DropdownV2
-                    key={field.title}
                     label={field.label}
                     items={field.list}
                     itemToString={itemToString}

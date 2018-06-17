@@ -96,7 +96,7 @@ export default class PositionStage extends Component {
       <div className="position-stage">
           {fields.map((field) => {
             return(
-              <div className="position-section">
+              <div className="position-section" key={`${field.title}-container`}>
                 <div className="position-section-title">{field.title}</div>
                 <DropdownV2
                   key={field.title}

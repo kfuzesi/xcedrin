@@ -3,9 +3,6 @@ $font-prefix: '../node_modules/@ibm/plex';
 @import 'carbon-components/scss/globals/scss/styles.scss';
 @import 'styles/variables';
 
-$header-height: 60px;
-$navbar-height: 50px;
-
 .app {
   font-family: $plex-sans;
   font-weight: 400;

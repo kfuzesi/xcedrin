@@ -4,96 +4,7 @@ import CandidateStage from './candidate/CandidateStage';
 import PositionStage from './position/PositionStage';
 import OptionsList from './options-list/OptionsList';
 import LocationStage from './location/LocationStage';
-
-// import { DataTable } from 'carbon-components-react';
-export default class Builder extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      curStep: 1,
-      form: {}
-    };
-    this.incrementStep = this.incrementStep.bind(this);
-    this.decrementStep = this.decrementStep.bind(this);
-  }
-
-  stageSwitch() {
-    const stage = stages[this.state.curStep - 1];
-    const type = stage.type;
-    
-    switch (type) {
-      case 'list':
-        return <OptionsList
-                  field={stage.field}
-                  options={stage.options}
-                  incrementStep={this.incrementStep}
-                  decrementStep={this.decrementStep}
-                  updateForm={this.updateForm}
-               ></OptionsList>;
-      case 'location':
-        return <LocationStage
-                  field={stage.field}
-                  updateForm={this.updateForm}
-               ></LocationStage>;
-      case 'position':
-        return <PositionStage
-                  field={stage.field}
-                  options={stage.options}
-                  incrementStep={this.incrementStep}
-                  decrementStep={this.decrementStep}
-                  updateForm={this.updateForm}
-               ></PositionStage>;
-      case 'candidate':
-        return <CandidateStage
-                  field={stage.field}
-                  updateForm={this.updateForm}
-               ></CandidateStage>;
-      default:
-        return '';
-    }
-  }
-
-  updateForm(data) {
-    return function() {
-      this.setState({
-        form: Object.assign({}, this.state.form, data)
-      });
-    }
-  }
-
-  incrementStep() {
-    this.setState({
-      curStep: this.state.curStep < stages.length ? this.state.curStep + 1 : stages.length,
-    });
-    console.log(this.state);
-  }
-
-  decrementStep() {
-    this.setState({
-      curStep: this.state.curStep > 1 ? this.state.curStep - 1 : 1,
-    });
-  }
-
-  render() {
-    return(
-      <div className="demand-builder">
-        <div className="builder-step-title">{stages[this.state.curStep - 1].title}</div>
-        <p className="builder-step-num">step {this.state.curStep} of {stages.length}</p>
-        <div className="builder-stage">
-          {this.stageSwitch()}
-        </div>
-        <div className="builder-nav">
-          <div className="builder-back" onClick={this.decrementStep}>Prev</div>
-          <div className="builder-forw" onClick={this.incrementStep}>Next</div>
-        </div>
-      </div>
-    );
-  }
-}
-
-const stageComponentMap = {
-  list: ""
-};
+import Draft from '../draft/Draft';
 
 const stages = [
   {
@@ -125,12 +36,13 @@ const stages = [
     field: 'specialty',
     type: 'list',
     options: [
-      'Automation Development and Testing',
-      'Backend, Server Systems, or Cloud-Based Development',
-      'Client-Facing Assistance and Solution Development',
-      'Firmware Development',
-      'Front End Development',
-      'Full Stack Development'
+      'Default specialties',
+      // 'Automation Development and Testing',
+      // 'Backend, Server Systems, or Cloud-Based Development',
+      // 'Client-Facing Assistance and Solution Development',
+      // 'Firmware Development',
+      // 'Front End Development',
+      // 'Full Stack Development'
     ],
   },
   {
@@ -158,8 +70,134 @@ const stages = [
     ]
   },
   {
-    title: 'Candidate characteristics/competencies',
+    title: 'Candidate qualifications',
     field: 'candidate',
     type: 'candidate',
   },
+  {
+    title: 'Summary',
+    field: 'draft',
+    type: 'draft',
+  },
 ];
+
+const profileSpecialties = {
+  'Entry Level Software Developer': [
+    'Automation Development and Testing',
+    'Backend, Server Systems, or Cloud-Based Development',
+    'Client-Facing Assistance and Solution Development',
+    'Firmware Development',
+    'Front End Development',
+    'Full Stack Development'
+  ],
+  'Entry-Level UX Designer and Front End Developer': [
+    'UX Designer',
+    'Design Researcher',
+    'Visual Designer',
+    'Front-End Developer',
+    'Content Designer'
+  ],
+};
+
+export default class Builder extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      curStep: 1,
+      form: {
+        track: '',
+        profile: '',
+        speciality: '',
+        location: null,
+        position: null,
+        qualifications: null,
+      }
+    };
+    this.incrementStep = this.incrementStep.bind(this);
+    this.decrementStep = this.decrementStep.bind(this);
+    this.updateForm = this.updateForm.bind(this);
+  }
+
+  stageSwitch() {
+    const stage = stages[this.state.curStep - 1];
+    const type = stage.type;
+    
+    switch (type) {
+      case 'list':
+        if (stage.field == 'specialty' && this.state.form.profile in profileSpecialties) {
+          return <OptionsList
+                    field={stage.field}
+                    options={profileSpecialties[this.state.form.profile]}
+                    incrementStep={this.incrementStep}
+                    decrementStep={this.decrementStep}
+                    updateForm={this.updateForm}
+                ></OptionsList>;
+        }
+        else {
+          return <OptionsList
+                    field={stage.field}
+                    options={stage.options}
+                    incrementStep={this.incrementStep}
+                    decrementStep={this.decrementStep}
+                    updateForm={this.updateForm}
+                ></OptionsList>;
+        }
+      case 'location':
+        return <LocationStage
+                  field={stage.field}
+                  updateForm={this.updateForm}
+               ></LocationStage>;
+      case 'position':
+        return <PositionStage
+                  field={stage.field}
+                  options={stage.options}
+                  incrementStep={this.incrementStep}
+                  decrementStep={this.decrementStep}
+                  updateForm={this.updateForm}
+               ></PositionStage>;
+      case 'candidate':
+        return <CandidateStage
+                  field={stage.field}
+                  updateForm={this.updateForm}
+               ></CandidateStage>;
+      case 'draft':
+        return <Draft></Draft>;
+      default:
+        return '';
+    }
+  }
+
+  updateForm(data) {
+    this.setState({
+      form: Object.assign({}, this.state.form, data)
+    });
+  }
+
+  incrementStep() {
+    this.setState({
+      curStep: this.state.curStep < stages.length ? this.state.curStep + 1 : stages.length,
+    });
+  }
+
+  decrementStep() {
+    this.setState({
+      curStep: this.state.curStep > 1 ? this.state.curStep - 1 : 1,
+    });
+  }
+
+  render() {
+    return(
+      <div className="demand-builder">
+        <div className="builder-step-title">{stages[this.state.curStep - 1].title}</div>
+        <p className="builder-step-num">step {this.state.curStep} of {stages.length}</p>
+        <div className="builder-stage">
+          {this.stageSwitch()}
+        </div>
+        <div className="builder-nav">
+          <div className="builder-back" onClick={this.decrementStep}>Prev</div>
+          <div className="builder-forw" onClick={this.incrementStep}>Next</div>
+        </div>
+      </div>
+    );
+  }
+}
