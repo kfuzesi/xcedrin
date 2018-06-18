@@ -15,7 +15,7 @@
 curl -X GET http://localhost:8080/demands | python -mjson.tool
 curl -X GET http://localhost:8080/demands/bus/cloud | python -mjson.tool
 
-curl -X POST -H 'Content-Type: application/json' -d '{"draft_id":"1","vp":"Mickey Mouse","bu":"cloud","location":"RTP","num_tickets":5,"onboarding_quarter":"fall","req_title":"Entry-Level Software Developer","specialty":"Automation Development and Testing","subgroup":"idk","track":"developer","foreign_nationals":"true"}' http://localhost:8080/demands
+curl -X POST -H 'Content-Type: application/json' -d '{"draft_id":"9071f1b27db44ed300ce0301dbb813e0","vp":"Mickey Mouse","bu":"cloud","location":"RTP","num_tickets":5,"onboarding_quarter":"fall","req_title":"Entry-Level Software Developer","specialty":"Automation Development and Testing","subgroup":"idk","track":"developer","foreign_nationals":"true"}' http://localhost:8080/demands
 
 Document Templates for Demand DB and Draft DB
 
