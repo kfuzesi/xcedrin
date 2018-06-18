@@ -22,6 +22,7 @@ export default class Settings extends Component {
     this.state = {
       curSection: 'Business Units'
     };
+    this.updateNavbar = this.updateNavbar.bind(this);
   }
 
   onSubmit() {
@@ -32,13 +33,19 @@ export default class Settings extends Component {
     console.log('radio changed');
   }
 
+  updateNavbar(name) {
+    this.setState({ curSection: name });
+  }
+
   render() {
     return(
       <div className="settings">
 
         <Navbar
           title={'Settings'}
-          items={['Business Units', 'Personal Profile']}>
+          items={['Business Units', 'Personal Profile']}
+          updateNavbar={this.updateNavbar}
+          curSelected={this.state.curSection}>
         </Navbar>
 
         <div className="settings-content">

@@ -17,5 +17,19 @@
   @extend %subheader;
   // font-size: 20px;
   // font-weight: 300;
-  margin: 25px;
+  margin: 20px 15px;
+  padding: 5px 10px;
+  transition: all .2s ease-in-out;
+
+  &:hover {
+    transition: all .2s ease-in-out;
+    cursor: pointer;
+    color: $xcedrin-btn-hover;
+  }
+}
+
+.selected {
+  border-radius: 3px;
+  border-left: 3px solid $xcedrin-btn-hover;
+  color: $xcedrin-btn-hover;
 }

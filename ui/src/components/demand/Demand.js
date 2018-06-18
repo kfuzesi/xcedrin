@@ -10,6 +10,7 @@ export default class Demand extends Component {
       curSection: 'All',
       stateArrOfDemands: [],
     };
+    this.updateNavbar = this.updateNavbar.bind(this);
   }
 
   componentDidMount() {
@@ -27,6 +28,10 @@ export default class Demand extends Component {
         });
         this.setState({ stateArrOfDemands : localArrayOfDemands});
     })
+  }
+
+  updateNavbar(name) {
+    this.setState({ curSection: name });
   }
 
   renderSection(section) {
@@ -66,7 +71,9 @@ export default class Demand extends Component {
         <Navbar
           className="demand-navbar"
           title={'Demand'}
-          items={['All', 'Drafts', 'Builder']}>
+          items={['All', 'Drafts', 'Builder']}
+          updateNavbar={this.updateNavbar}
+          curSelected={this.state.curSection}>
         </Navbar>
         <div className="demand-content">
           <h2 className="demand-content-title">{this.state.curSection}</h2>
