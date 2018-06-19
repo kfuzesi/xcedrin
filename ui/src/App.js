@@ -6,6 +6,7 @@ import Dashboard from './components/dashboard/Dashboard';
 import Drafts from './components/drafts/Drafts';
 import Settings from './components/settings/Settings';
 import Support from './components/support/Support';
+import Table from 'rc-table';
 
 class App extends Component {
   render() {
