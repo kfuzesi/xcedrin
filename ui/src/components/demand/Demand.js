@@ -16,7 +16,7 @@ export default class Demand extends Component {
   getColumns(){
     return [{title: "Id", dataIndex: "id", key: "id", width: 100, },
             {title: "Draft_id", dataIndex: "draft_id", key: "draft_id", width: 100, },
-            {title: "Bu_rep", dataIndex: "bu_rep", key: "bu_rep", width: 100, },
+            {title: "Bu_rep", dataIndex: "bu", key: "bu", width: 100, },
             {title: "Subgroup", dataIndex: "subgroup", key: "subgroup", width: 100, },
             {title: "Vp", dataIndex: "vp", key: "vp", width: 100, },
             {title: "Foreign_nationals", dataIndex: "foreign_nationals", key: "foreign_nationals", width: 100, },
@@ -34,9 +34,15 @@ export default class Demand extends Component {
   componentDidMount() {
     fetch('http://localhost:8080/demands')
           .then(results => results.json())
-          .then(arrOfDemands => {
-             this.setState({ demandsInJson : arrOfDemands});
+          .then(arr => {
+             this.setState({ demandsInJson : arr});
           });
+    fetch('http://localhost:8080/drafts')
+                    .then(results => results.json())
+                    .then(arr => {
+                       this.setState({ draftsInJson : arr});
+                    });
+
 
   }
 
@@ -70,6 +76,7 @@ export default class Demand extends Component {
   }
 
   render() {
+  console.log("rendering...");
     return(
       <div className="demand">
         <Navbar

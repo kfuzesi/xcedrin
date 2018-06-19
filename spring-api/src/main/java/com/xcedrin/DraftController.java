@@ -39,18 +39,18 @@ public class DraftController {
 	@Autowired
     private CloudantClient client;
 	
-	private Database draft_db;
+	private Database draft_db, db;
 	
 	@PostConstruct
 	public void initialize() {
     	System.out.println("----- Initialize Draft DB -----");
-    	
+		db = client.database("test_db", false);
     	draft_db = client.database("draft_db", false);
 	}
-	
+
 	// create a new draft
 	@PostMapping("/drafts")
-    public @ResponseBody String createDemand(@RequestBody Draft draft) {
+    public @ResponseBody String createDraft(@RequestBody Draft draft) {
     	System.out.println("----- POST Demand -----");
 
     	// TODO
@@ -60,8 +60,14 @@ public class DraftController {
 		//Response response = draft_db.post(??);
 		//String id = response.getId();
 		//return id;
-    	return "createDemand";
+    	return "createDraft";
     }
+	@GetMapping("/drafts")
+	public @ResponseBody List<Draft> getAllDraft() throws IOException {
+		System.out.println("----- GET Drafts -----");
+		System.out.println(draft_db.getAllDocsRequestBuilder().includeDocs(true).build().getResponse().toString());
+		return draft_db.getAllDocsRequestBuilder().includeDocs(true).build().getResponse().getDocsAs(Draft.class);
+	}
 	
 	// update draft stage given its id
 	@PutMapping("/drafts/{draft_id}")
