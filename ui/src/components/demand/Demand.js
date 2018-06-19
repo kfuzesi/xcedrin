@@ -2,13 +2,14 @@ import React, { Component } from 'react';
 import './Demand.css';
 import Builder from '../builder/Builder';
 import Navbar from '../navbar/Navbar';
-
+import Table from 'rc-table';
 export default class Demand extends Component {
   constructor(props) {
     super(props);
     this.state = {
       curSection: 'All',
       stateArrOfDemands: [],
+      demandsInJson:[],
     };
     this.updateNavbar = this.updateNavbar.bind(this);
   }
@@ -19,6 +20,7 @@ export default class Demand extends Component {
       .then(arrOfDemands => {
         let localArrayOfDemands = arrOfDemands.map((eachDemand) => {
             return (
+
               <div key={eachDemand.bu}>
                 <h2> {eachDemand.bu}, {eachDemand.location}, {eachDemand.num_tickets}</h2>
                 <h2> {eachDemand.onboarding_quarter}, {eachDemand.req_title} </h2>
@@ -28,6 +30,12 @@ export default class Demand extends Component {
         });
         this.setState({ stateArrOfDemands : localArrayOfDemands});
     })
+    fetch('http://localhost:8080/demands')
+          .then(results => results.json())
+          .then(arrOfDemands => {
+             this.setState({ demandsInJson : arrOfDemands});
+          });
+
   }
 
   updateNavbar(name) {
@@ -53,6 +61,24 @@ export default class Demand extends Component {
       case 'Drafts':
         return (
           <div>
+                <Table/>
+                <div>
+                {this.state.demandsInJson.map((demand) => {
+                              return (
+                                <div>
+                                  <h2>{demand.bu}</h2>
+                                  <hr />
+                                </div>
+                              )
+                            })}
+
+
+
+                </div>
+
+
+
+
             {/* <DataTable></DataTable> */}
           </div>
         )
