@@ -1,28 +1,18 @@
 @import 'styles/variables';
 
 .dashboard {
-  height: 100%;
-  width: 100%;
-  display: grid;
-  grid-template-columns: 500px auto;
-  grid-template-areas:
-  "summary table";
-}
-
-.dashboard-summary {
-  grid-area: summary;
-  display: flex;
-  justify-content: center;
+	padding-left: 10%;
+  	padding-top: 40px;
+  	width: 75%;
 }
 
 .dashboard-table {
-  grid-area: table;
+	width: 100%;
+  	margin-right: 25px;
+}
 
-  .table-title {
-  }
-
-  .demand-table {
-  }
+.dashboard-table-title {
+	margin-bottom: 10px;
 }
 
 

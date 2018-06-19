@@ -15,19 +15,25 @@ export default class Drafts extends Component {
     this.updateNavbar = this.updateNavbar.bind(this);
   }
  
+// getDemands(draft_id) {
+//	 fetch('http://localhost:8080/demands/drafts/' + )
+//	   .then(results => results.json())
+//	   .then(aryOfDrafts => {
+// }
+	   
  componentDidMount() {
    fetch('http://localhost:8080/drafts')
    .then(results => results.json())
    .then(aryOfDrafts => {
 	   let draftObject = aryOfDrafts.reduce(function(map, obj) {
+		     //getDemands(obj.id);
 		    map[obj.name] = obj;
 		    return map;
 		}, {});
 	   let draftNames = aryOfDrafts.map((item) => {
 		   return (item.name)
 	   })
-       this.setState({demandListDrafts : draftObject});
-	   this.setState({demandListNames : draftNames});
+       this.setState({demandListDrafts : draftObject, demandListNames : draftNames});
        this.updateNavbar(draftNames[0]);
    });
   }
