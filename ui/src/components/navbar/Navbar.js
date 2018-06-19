@@ -21,12 +21,12 @@ export default class Navbar extends Component {
   render() {
     return(
       <div className="navbar">
-        <div className="navbar-title">Demand</div>
+        <div className="navbar-title">Drafts</div>
         <ul className="navbar-ul">
           {this.props.items.map((item) => {
             return (
               <li
-                className={"navbar-li " + (this.state.curSelected == item ? "selected" : "")}
+                className={"navbar-li " + (this.state.curSelected === item ? "selected" : "")}
                 key={`navbar-${item}`}
                 onClick={(e) => this.selectItem(e, item)}>
                 {item}

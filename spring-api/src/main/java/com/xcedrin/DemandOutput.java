@@ -1,6 +1,7 @@
 package com.xcedrin;
 
-public class Demand {
+public class DemandOutput {
+	String _id;
 	String draft_id;
 	String bu;
 	String subgroup;
@@ -13,6 +14,12 @@ public class Demand {
 	String num_tickets;
 	String onboarding_quarter;
 	
+	public String getId() {
+		return _id;
+	}
+	public void setId(String id) {
+		this._id = id;
+	}
 	public String getDraft_id() {
 		return draft_id;
 	}

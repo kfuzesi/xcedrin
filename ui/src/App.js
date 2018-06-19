@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route, Redirect, Switch, Link} from 'react-rou
 import './App.css';
 
 import Dashboard from './components/dashboard/Dashboard';
-import Demand from './components/demand/Demand';
+import Drafts from './components/drafts/Drafts';
 import Settings from './components/settings/Settings';
 import Support from './components/support/Support';
 
@@ -16,8 +16,8 @@ class App extends Component {
 
           <div className="app-navbar">
             <ul className="navbar-route-list">
-              <li className="navbar-route"><Link to="/dashboard">Dashboard</Link></li>
-              <li className="navbar-route"><Link to="/demand">Demand</Link></li>
+              <li className="navbar-route"><Link to="/dashboard">All Demand</Link></li>
+              <li className="navbar-route"><Link to="/drafts">Drafts</Link></li>
               <li className="navbar-route"><Link to="/settings">Settings</Link></li>
               <li className="navbar-route"><Link to="/support">Support</Link></li>
             </ul>
@@ -26,7 +26,7 @@ class App extends Component {
           <div className="app-content">
             <Switch>
               <Route path="/dashboard" exact={true} component={Dashboard} />
-              <Route path="/demand" exact={true} component={Demand} />
+              <Route path="/drafts" exact={true} component={Drafts} />
               <Route path="/settings" exact={true} component={Settings} />
               <Route path="/support" exact={true} component={Support} />
               <Route path="/" exact={true} render={() => (<Redirect to="/dashboard"/>)} />

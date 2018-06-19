@@ -4,9 +4,15 @@ import CandidateStage from './candidate/CandidateStage';
 import PositionStage from './position/PositionStage';
 import OptionsList from './options-list/OptionsList';
 import LocationStage from './location/LocationStage';
+import SubgroupStage from './subgroup/SubgroupStage';
 import Draft from '../draft/Draft';
 
 const stages = [
+  { 
+	title: 'Enter a subgroup',
+	field: 'subgroup',
+	type: 'subgroup'
+  },
   {
     title: 'Select a track',
     field: 'track',
@@ -27,8 +33,9 @@ const stages = [
     field: 'profile',
     type: 'list',
     options: [
-      'Entry Level Software Developer',
-      'Entry-Level UX Designer and Front End Developer'
+      'Default profile',
+//      'Entry Level Software Developer',
+//      'Entry-Level UX Designer and Front End Developer'
     ],
   },
   {
@@ -46,34 +53,34 @@ const stages = [
     ],
   },
   {
-    title: 'Select locations',
+    title: 'Further Information',
     field: 'location',
     type: 'location'
   },
-  {
-    title: 'Position details',
-    field: 'position',
-    type: 'position',
-    options: [
-      {
-        title: 'Band',
-        placeholder: '06 - 07'
-      },
-      {
-        title: 'Required Degree',
-        placeholder: 'BS'
-      },
-      {
-        title: 'Onboarding Month',
-        placeholder: 'June, July, August' // this should be a calendar month selector
-      },
-    ]
-  },
-  {
-    title: 'Candidate qualifications',
-    field: 'candidate',
-    type: 'candidate',
-  },
+//  {
+//    title: 'Position details',
+//    field: 'position',
+//    type: 'position',
+//    options: [
+//      {
+//        title: 'Band',
+//        placeholder: '06 - 07'
+//      },
+//      {
+//        title: 'Required Degree',
+//        placeholder: 'BS'
+//      },
+//      {
+//        title: 'Onboarding Month',
+//        placeholder: 'June, July, August' // this should be a calendar month selector
+//      },
+//    ]
+//  },
+//  {
+//    title: 'Candidate qualifications',
+//    field: 'candidate',
+//    type: 'candidate',
+//  },
   {
     title: 'Summary',
     field: 'draft',
@@ -97,6 +104,52 @@ const profileSpecialties = {
     'Front-End Developer',
     'Content Designer'
   ],
+};
+
+const profiles = {
+  'Consultant': [
+	  'CBD Analytics Consultant - Commercial Sector',
+	  'CBD Cognitive Consultant - Commercial Sector',
+	  'CBD Cognitive Consultant - Public Service Sector',
+	  'CBD Cyber Security Specialist - Public Service Sector',
+	  'CBD Design Consultant - Commercial Sector',
+	  'CBD Digital Strategy & Interactive Consultant - Public Service Sector',
+	  'CBD Enterprise Applications Consultant - Public Service Sector',
+	  'CBD Enterprise Apps Consultant Commercial Sector',
+	  'CBD Technical Consultant - Commercial Sector',
+	  'CBD Technical Consultant - Public Service Sector',
+	  'CBD Transformation Consultant-Commercial Sector',
+	  'Entry-Level Consultant - CBD',
+	  'IBM Digital Strategy, Senior Strategy Consultant',
+	  'IBM Cognitive Business Decision Support -Cognitive Engineer Consultant',
+	  'IBM Strategy and Change Internal Practice (SCIP), Senior Consultant',
+	  'IBM Digital iX & Cognitive, Public - Cognitive Senior Consultant',
+	  'IBM Digital iX & Cognitive, Public - Digital Senior Consultant'
+   ],
+   'Corporate Strategy': ['Corporate Strategy Placeholder'],
+   'Data Scientist': ['Entry-Level Data Scientist'],
+   'Developer': [
+	   'Entry-Level Cognitive Software Developer',
+	   'Entry-Level DevOps Developer',
+	   'Entry-Level Site Reliability Engineer',
+	   'Entry-Level Software Developer',
+	   'Entry-Level UX Designer and Front End Developer'
+    ],
+    'Offering Manager': [
+    	'Finance Professional',
+    	'Human Resources Professional',
+    	'Procurement Professional',
+    	'Business Analyst',
+    	'Digital Marketing & Marketing Analytics Professional',
+    	'Strategy Consultant',
+    	'Communications',
+    	'Associate Offering Manager Program'
+    ],
+    'Seller': [
+    	'Summit Digital Sales',
+    	'Summit Senior Client Relationship Rep ',
+    	'Summit Technical Sales'
+    ]
 };
 
 export default class Builder extends Component {
@@ -123,6 +176,11 @@ export default class Builder extends Component {
     const type = stage.type;
     
     switch (type) {
+      case 'subgroup':
+    	  return <SubgroupStage
+    	  	field={stage.field}
+          	updateForm={this.updateForm}
+    	  ></SubgroupStage>;
       case 'list':
         if (stage.field == 'specialty' && this.state.form.profile in profileSpecialties) {
           return <OptionsList
@@ -132,8 +190,15 @@ export default class Builder extends Component {
                     decrementStep={this.decrementStep}
                     updateForm={this.updateForm}
                 ></OptionsList>;
-        }
-        else {
+        } else if (stage.field == 'profile' && this.state.form.track in profiles) {
+            return <OptionsList
+            field={stage.field}
+            options={profiles[this.state.form.track]}
+            incrementStep={this.incrementStep}
+            decrementStep={this.decrementStep}
+            updateForm={this.updateForm}
+        ></OptionsList>;
+        } else {
           return <OptionsList
                     field={stage.field}
                     options={stage.options}
