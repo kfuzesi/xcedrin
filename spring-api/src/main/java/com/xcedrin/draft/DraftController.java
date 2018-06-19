@@ -1,4 +1,4 @@
-package com.xcedrin;
+package com.xcedrin.draft;
 
 import com.cloudant.client.api.CloudantClient;
 import com.cloudant.client.api.Database;
@@ -18,19 +18,23 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.io.IOException;
+import java.time.LocalDateTime;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
+import com.xcedrin.demand.DemandOutput;
 
 @CrossOrigin(origins = "http://localhost:3000")
 @RestController
@@ -48,7 +52,7 @@ public class DraftController {
     	draft_db = client.database("draft_db", false);
 	}
 	
-	// create a new draft
+	// get all drafts
 	@GetMapping("/drafts")
     public @ResponseBody List<DraftOutput> getAllDrafts() throws IOException {
     	System.out.println("----- GET Drafts -----");
@@ -62,21 +66,32 @@ public class DraftController {
     public @ResponseBody String createDemand(@RequestBody Draft draft) {
     	System.out.println("----- POST Demand -----");
 
-    	// TODO
-    	// determine time draft was created: created_at
-    	// automatically set stage to "draft"
+    	draft.setStage("draft");
+    	draft.setCreated_at(LocalDateTime.now());
     	
-		//Response response = draft_db.post(??);
-		//String id = response.getId();
-		//return id;
-    	return "createDemand";
+		Response response = draft_db.post(draft);
+		String id = response.getId();
+		return id;
     }
 	
 	// update draft stage given its id
 	@PutMapping("/drafts/{draft_id}")
-    public @ResponseBody String updateDraftStage(@PathVariable String draft_id) {
+    public @ResponseBody Response updateDraftStage(@PathVariable String draft_id) {
     	System.out.println("----- PUT Update Draft Stage -----");
-    	// TODO
-		return "updateDraftStage";
+    	
+    	DraftOutput draft = draft_db.find(DraftOutput.class, draft_id);
+    	draft.setStage("submitted");
+    	Response update = draft_db.update(draft);
+		return update;
+    }
+	
+	// delete draft given its id
+	@DeleteMapping("/drafts/{draft_id}")
+    public ResponseEntity<?> deleteDraft(@PathVariable String draft_id) {
+    	System.out.println("----- DELETE Draft -----");
+    	
+    	DraftOutput draft = draft_db.find(DraftOutput.class, draft_id);
+		Response remove = draft_db.remove(draft.getId(), draft.getRev());
+		return new ResponseEntity<String>(remove.getReason(), HttpStatus.valueOf(remove.getStatusCode()));
     }
 }

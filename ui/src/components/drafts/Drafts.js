@@ -9,7 +9,8 @@ export default class Drafts extends Component {
     this.state = {
       curSection: '',
       stateArrOfDemands: [],
-      demandListDrafts: [],
+      demandListDrafts: {},
+      demandListNames :[]
     };
     this.updateNavbar = this.updateNavbar.bind(this);
   }
@@ -18,13 +19,16 @@ export default class Drafts extends Component {
    fetch('http://localhost:8080/drafts')
    .then(results => results.json())
    .then(aryOfDrafts => {
-       let draftArray = aryOfDrafts.map((eachDraft) => {
-           return(eachDraft.name)
-       });
-       this.setState({demandListDrafts : draftArray});
-       this.setState({curSection : draftArray[0]});
-       this.updateNavbar(draftArray[0]);
-       console.log(draftArray[0]);
+	   let draftObject = aryOfDrafts.reduce(function(map, obj) {
+		    map[obj.name] = obj;
+		    return map;
+		}, {});
+	   let draftNames = aryOfDrafts.map((item) => {
+		   return (item.name)
+	   })
+       this.setState({demandListDrafts : draftObject});
+	   this.setState({demandListNames : draftNames});
+       this.updateNavbar(draftNames[0]);
    });
   }
 
@@ -37,29 +41,37 @@ export default class Drafts extends Component {
 	   case 'Builder':
 	     return (
 	       <Builder></Builder>
-	     )   
+	     )
+	   case 'New Draft':
+		  return (<div></div>)
+	   case '' :
+		   return (<div></div>)
 	   default:
-	     return(
+		 let currentDraft = this.state.demandListDrafts[section];
+		 console.log(currentDraft);
+	     return (
 	      <div>
-	        <div className="draft-content"></div>
+	        <div className="draft-content">
+	        </div>
 	        <div className="add-demand" onClick={(e) => this.updateNavbar('Builder')}>+ Add Demand</div>
 	      </div>
-	    );
+	    )
 	}
   }
 
   render() {
     return(
-      <div className="demand">
+      <div className="drafts">
         <Navbar
-          className="demand-navbar"
+          className="drafts-navbar"
           title={'Drafts'}
-          items={this.state.demandListDrafts}
+          items={this.state.demandListNames}
           updateNavbar={this.updateNavbar}
           curSelected={this.state.curSection}>
         </Navbar>
-        <div className="demand-content">
-          <h2 className="demand-content-title">{this.state.curSection}</h2>
+        <div className="drafts-content">
+          <h2 className="drafts-content-title">{this.state.curSection}</h2>
+          
           <hr />
           {this.renderSection(this.state.curSection)}
         </div>

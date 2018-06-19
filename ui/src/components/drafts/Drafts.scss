@@ -1,0 +1,32 @@
+@import 'styles/variables';
+
+.drafts {
+  height: 100%;
+  display: grid;
+  grid-template-columns: 30% auto;
+  grid-template-areas: "navbar content";
+}
+
+hr {
+  width: 100%;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  border: 0;
+  border-top-width: 0px;
+  border-top-style: none;
+  border-top-color: currentcolor;
+  border-top: 1px solid rgba(0, 0, 0, .1);
+}
+
+.drafts-content-title {
+  width: 100%;
+}
+
+.drafts-content {
+  grid-area: content;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding: 25px;
+}

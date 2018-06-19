@@ -13,6 +13,10 @@
   } flex-direction: column;
 }
 
+.navbar-ul {
+  position: relative;
+  height: 100%;}
+
 .navbar-li {
   @extend %subheader;
   // font-size: 20px;
@@ -26,6 +30,11 @@
     cursor: pointer;
     color: $xcedrin-btn-hover;
   }
+  
+  &:last-child {
+  	position: absolute;
+  	bottom: 0;
+  }
 }
 
 .selected {
@@ -33,3 +42,4 @@
   border-left: 3px solid $xcedrin-btn-hover;
   color: $xcedrin-btn-hover;
 }
+

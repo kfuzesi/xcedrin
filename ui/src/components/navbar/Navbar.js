@@ -33,6 +33,12 @@ export default class Navbar extends Component {
               </li>
             )
           })}
+        <li
+        	className={"navbar-li " + (this.state.curSelected === 'New Draft' ? "selected" : "")}
+        	key={`navbar-new`}
+        	onClick={(e) => this.selectItem(e, 'New Draft')}>
+        	{'New Draft'}
+        </li>
         </ul>
       </div>
     )

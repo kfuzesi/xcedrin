@@ -1,7 +1,8 @@
-package com.xcedrin;
+package com.xcedrin.draft;
 
 public class DraftOutput {
 	String _id;
+	String _rev;
 	String name;
 	String bu_rep;
 	String bu;
@@ -10,11 +11,17 @@ public class DraftOutput {
 	String created_at;
 	String stage;
 	
-	public String get_id() {
+	public String getId() {
 		return _id;
 	}
-	public void set_id(String _id) {
+	public void setId(String _id) {
 		this._id = _id;
+	}
+	public String getRev() {
+		return _rev;
+	}
+	public void setRev(String rev) {
+		this._rev = rev;
 	}
 	public String getName() {
 		return name;

@@ -1,4 +1,6 @@
-package com.xcedrin;
+package com.xcedrin.draft;
+
+import java.time.LocalDateTime;
 
 public class Draft {
 	String name;
@@ -6,6 +8,8 @@ public class Draft {
 	String bu;
 	String cfo;
 	String hiring_manager;
+	String stage;
+	LocalDateTime created_at;
 	
 	public String getName() {
 		return name;
@@ -36,5 +40,17 @@ public class Draft {
 	}
 	public void setHiring_manager(String hiring_manager) {
 		this.hiring_manager = hiring_manager;
+	}
+	public String getStage() {
+		return stage;
+	}
+	public void setStage(String stage) {
+		this.stage = stage;
+	}
+	public LocalDateTime getCreated_at() {
+		return created_at;
+	}
+	public void setCreated_at(LocalDateTime created_at) {
+		this.created_at = created_at;
 	}
 }
