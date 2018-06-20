@@ -81,11 +81,11 @@ const stages = [
 //    field: 'candidate',
 //    type: 'candidate',
 //  },
-  {
-    title: 'Summary',
-    field: 'draft',
-    type: 'draft',
-  },
+  // {
+  //   title: 'Summary',
+  //   field: 'draft',
+  //   type: 'draft',
+  // },
 ];
 
 const profileSpecialties = {

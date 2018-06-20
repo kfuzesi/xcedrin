@@ -25,16 +25,19 @@ export default class Drafts extends Component {
    fetch('http://localhost:8080/drafts')
    .then(results => results.json())
    .then(aryOfDrafts => {
-	   let draftObject = aryOfDrafts.reduce(function(map, obj) {
-		     //getDemands(obj.id);
-		    map[obj.name] = obj;
-		    return map;
-		}, {});
-	   let draftNames = aryOfDrafts.map((item) => {
-		   return (item.name)
-	   })
-       this.setState({demandListDrafts : draftObject, demandListNames : draftNames});
-       this.updateNavbar(draftNames[0]);
+     let draftObject = aryOfDrafts.reduce(function (map, obj) {
+       //getDemands(obj.id);
+       map[obj.name] = obj;
+       return map;
+     }, {});
+     let draftNames = aryOfDrafts.map((item) => {
+       return (item.name)
+     });
+     this.setState({
+       curSection: draftNames[0],
+       demandListDrafts: draftObject,
+       demandListNames: draftNames
+     });
    });
   }
 

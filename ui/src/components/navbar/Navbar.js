@@ -10,11 +10,15 @@ export default class Navbar extends Component {
     }
   }
 
+  componentWillReceiveProps(nextProps) {
+    if (this.props.curSelected !== nextProps.curSelected) {
+      this.setState({ curSelected: nextProps.curSelected });
+    }
+  }
+
   selectItem(e, item) {
     e.preventDefault();
-    this.setState({
-      curSelected: item
-    })
+    this.setState({ curSelected: item });
     this.props.updateNavbar(item);
   }
 
