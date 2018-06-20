@@ -3,17 +3,8 @@ import './LocationStage.css';
 
 import { DropdownV2, NumberInput } from 'carbon-components-react';
 
-<<<<<<< HEAD
 function itemToString(item) {
   return item === null ? null : item.text;
-=======
-function locationsToString(item) {
-  return item.name;
->>>>>>> branch 'master' of https://github.com/kfuzesi/xcedrin.git
-}
-
-function monthsToString(item) {
-  return item.text;
 }
 
 const locations = [
@@ -63,7 +54,7 @@ export default class LocationStage extends Component {
   				key={'Onboarding Month'}
   				label={'Select desired onboarding month'}
   				items={months}
-  				itemToString={monthsToString}
+  				itemToString={itemToString}
   				className="position-dropdown"
   			/>
   		</div>
@@ -73,7 +64,7 @@ export default class LocationStage extends Component {
           <DropdownV2
             label="Select a location for the position"
             items={locations}
-            itemToString={locationsToString}
+            itemToString={itemToString}
             className="location-dropdown"
           />
         </div>
