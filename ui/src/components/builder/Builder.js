@@ -149,6 +149,7 @@ const api_url = 'http://localhost:8080';
 export default class Builder extends Component {
   constructor(props) {
     super(props);
+    console.log(this.props.curSection)
     this.state = {
       curStep: 1,
       form: {

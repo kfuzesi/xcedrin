@@ -10,6 +10,7 @@ export default class Drafts extends Component {
     super(props);
     this.state = {
       curSection: '',
+      builderDraft: '',
       stateArrOfDemands: [],
       draftNames :[],
       draftMap: {},
@@ -85,7 +86,7 @@ export default class Drafts extends Component {
     switch (section) {
       case 'Builder':
         return (
-          <Builder curSection={this.state.curSection}></Builder>
+          <Builder curSection={this.state.builderDraft}></Builder>
         )
       case 'New Draft':
         return ''
@@ -98,7 +99,7 @@ export default class Drafts extends Component {
             <div className="draft-content">
 	        	  <Table columns={this.getColumns()} data={this.getData(currentDraft)} />
             </div>
-            <div className="add-demand" onClick={(e) => this.updateNavbar('Builder')}>+ Add Demand</div>
+            <div className="add-demand" onClick={(e) => {this.setState({ builderDraft: this.state.draftMap[this.state.curSection] }); this.updateNavbar('Builder');}}>+ Add Demand</div>
           </div>
         )
     }
