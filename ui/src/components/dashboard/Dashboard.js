@@ -38,11 +38,11 @@ constructor(props) {
           .then(arr => {
              this.setState({ demandsInJson : arr});
           });
-    fetch('http://localhost:8080/drafts')
-                    .then(results => results.json())
-                    .then(arr => {
-                       this.setState({ draftsInJson : arr});
-                    });
+//    fetch('http://localhost:8080/drafts')
+//                    .then(results => results.json())
+//                    .then(arr => {
+//                       this.setState({ draftsInJson : arr});
+//                    });
 
 
   }

@@ -5,41 +5,41 @@ import { DropdownV2, NumberInput } from 'carbon-components-react';
 import Draft from '../../draft/Draft';
 
 function itemToString(item) {
-  return item.name;
+  return item === null ? null : item.text;
 }
 
 const locations = [
   {
-    name: 'Yorktown'
+	  text: 'Yorktown'
   },
   {
-    name: 'Armonk'
+	  text: 'Armonk'
   },
   {
-    name: 'NYC'
+	  text: 'NYC'
   },
   {
-    name: 'Almaden'
+	  text: 'Almaden'
   },
 ]
 
 const months = [
-	  {
-	    id: 'option-1',
-	    text: 'June, July, Aug'
-	  },
-	  {
-	    id: 'option-2',
-	    text: 'Sept, Oct, Nov'
-	  },
-	  {
-	    id: 'option-2',
-	    text: 'Dec, Jan, Feb'
-	  },
-	  {
-	    id: 'option-2',
-	    text: 'Mar, Apr, May'
-	  },
+  {
+    id: 'option-1',
+    text: 'June, July, Aug'
+  },
+  {
+    id: 'option-2',
+    text: 'Sept, Oct, Nov'
+  },
+  {
+    id: 'option-2',
+    text: 'Dec, Jan, Feb'
+  },
+  {
+    id: 'option-2',
+    text: 'Mar, Apr, May'
+  },
 ];
 
 const min = 1;

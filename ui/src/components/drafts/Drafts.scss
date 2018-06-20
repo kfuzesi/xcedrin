@@ -30,3 +30,18 @@ hr {
   justify-content: flex-start;
   padding: 25px;
 }
+
+.add-demand {
+  @extend %subheader;
+  // font-size: 20px;
+  // font-weight: 300;
+  margin: 20px 15px;
+  padding: 5px 10px;
+  transition: all .2s ease-in-out;
+
+  &:hover {
+    transition: all .2s ease-in-out;
+    cursor: pointer;
+    color: $xcedrin-btn-hover;
+  }
+}
