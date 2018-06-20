@@ -51,6 +51,7 @@ export default class LocationStage extends Component {
   		<div className="location-stage-title">Onboarding Month</div>
   		<div className="location-section">
   			<DropdownV2
+          onChange={value => this.props.updateForm({onboarding_quarter: value.selectedItem.text})}
   				key={'Onboarding Month'}
   				label={'Select desired onboarding month'}
   				items={months}
@@ -62,6 +63,7 @@ export default class LocationStage extends Component {
         <div className="location-name-input">
   	    <div className="location-stage-title">Location</div>
           <DropdownV2
+            onChange={value => this.props.updateForm({location: value.selectedItem.text})}
             label="Select a location for the position"
             items={locations}
             itemToString={itemToString}
@@ -70,11 +72,10 @@ export default class LocationStage extends Component {
         </div>
         <div className="location-num-input">
           <NumberInput
+            onChange={evt => this.props.updateForm({num_tickets: evt.target.value})}
             id={`num-openings`}
             className="location-num-openings"
             label="# Openings"
-            // onChange={onChange()}
-            // onClick={onClick()}
             min={min}
             max={max}
             value={1}

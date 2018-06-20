@@ -34,8 +34,6 @@ const stages = [
     type: 'list',
     options: [
       'Default profile',
-//      'Entry Level Software Developer',
-//      'Entry-Level UX Designer and Front End Developer'
     ],
   },
   {
@@ -44,12 +42,6 @@ const stages = [
     type: 'list',
     options: [
       'Default specialties',
-      // 'Automation Development and Testing',
-      // 'Backend, Server Systems, or Cloud-Based Development',
-      // 'Client-Facing Assistance and Solution Development',
-      // 'Firmware Development',
-      // 'Front End Development',
-      // 'Full Stack Development'
     ],
   },
   {
@@ -152,23 +144,31 @@ const profiles = {
     ]
 };
 
+const api_url = 'http://localhost:8080';
+
 export default class Builder extends Component {
   constructor(props) {
     super(props);
     this.state = {
       curStep: 1,
       form: {
+        draft_id: this.props.curSection,
+        bu: '',
+        subgroup: '',
+        vp: '',
+        foreign_nationals: false,
         track: '',
-        profile: '',
-        speciality: '',
-        location: null,
-        position: null,
-        qualifications: null,
+        req_title: '',
+        specialty: '',
+        location: '',
+        num_tickets: 0,
+        onboarding_quarter: ''
       }
     };
     this.incrementStep = this.incrementStep.bind(this);
     this.decrementStep = this.decrementStep.bind(this);
     this.updateForm = this.updateForm.bind(this);
+    this.submit = this.submit.bind(this);
   }
 
   stageSwitch() {
@@ -178,9 +178,9 @@ export default class Builder extends Component {
     switch (type) {
       case 'subgroup':
     	  return <SubgroupStage
-    	  	field={stage.field}
-          	updateForm={this.updateForm}
-    	  ></SubgroupStage>;
+                  field={stage.field}
+                  updateForm={this.updateForm}
+                ></SubgroupStage>;
       case 'list':
         if (stage.field == 'specialty' && this.state.form.profile in profileSpecialties) {
           return <OptionsList
@@ -192,12 +192,12 @@ export default class Builder extends Component {
                 ></OptionsList>;
         } else if (stage.field == 'profile' && this.state.form.track in profiles) {
             return <OptionsList
-            field={stage.field}
-            options={profiles[this.state.form.track]}
-            incrementStep={this.incrementStep}
-            decrementStep={this.decrementStep}
-            updateForm={this.updateForm}
-        ></OptionsList>;
+                      field={stage.field}
+                      options={profiles[this.state.form.track]}
+                      incrementStep={this.incrementStep}
+                      decrementStep={this.decrementStep}
+                      updateForm={this.updateForm}
+                    ></OptionsList>;
         } else {
           return <OptionsList
                     field={stage.field}
@@ -205,7 +205,7 @@ export default class Builder extends Component {
                     incrementStep={this.incrementStep}
                     decrementStep={this.decrementStep}
                     updateForm={this.updateForm}
-                ></OptionsList>;
+                  ></OptionsList>;
         }
       case 'location':
         return <LocationStage
@@ -250,6 +250,18 @@ export default class Builder extends Component {
     });
   }
 
+  submit() {
+    fetch(`${api_url}/demands/`, {
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      method: 'POST',
+      body: JSON.stringify(this.state.form)
+    })
+    .then(res => console.log(res));
+  }
+
   render() {
     return(
       <div className="demand-builder">
@@ -260,7 +272,11 @@ export default class Builder extends Component {
         </div>
         <div className="builder-nav">
           <div className="builder-back" onClick={this.decrementStep}>Prev</div>
-          <div className="builder-forw" onClick={this.incrementStep}>Next</div>
+          {this.state.curStep === stages.length ? (
+              <div className="builder-submit" onClick={this.submit}>Submit</div>
+          ) : (
+              <div className="builder-forw" onClick={this.incrementStep}>Next</div>
+          )}
         </div>
       </div>
     );

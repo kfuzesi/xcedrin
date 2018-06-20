@@ -81,25 +81,27 @@ export default class Drafts extends Component {
   }
   
   renderSection(section) {
-	switch (section) {
-	   case 'Builder':
-	     return (
-	       <Builder></Builder>
-	     )
-	   case 'New Draft':
-		  return (<div></div>)
-	   case '' :
-		   return (<div></div>)
-	   default:
-	     return (
-	      <div>
-	        <div className="draft-content">
-	        	<Table columns={this.getColumns()} data={this.getData(this.state.draftMap[section])} />
-	        </div>
-	        <div className="add-demand" onClick={(e) => this.updateNavbar('Builder')}>+ Add Demand</div>
-	      </div>
-	    )
-	}
+    console.log(this.state);
+    switch (section) {
+      case 'Builder':
+        return (
+          <Builder curSection={this.state.curSection}></Builder>
+        )
+      case 'New Draft':
+        return ''
+      case '' :
+        return ''
+      default:
+        let currentDraft = this.state.draftMap[section];
+        return (
+          <div>
+            <div className="draft-content">
+	        	  <Table columns={this.getColumns()} data={this.getData(currentDraft)} />
+            </div>
+            <div className="add-demand" onClick={(e) => this.updateNavbar('Builder')}>+ Add Demand</div>
+          </div>
+        )
+    }
   }
 
   render() {
