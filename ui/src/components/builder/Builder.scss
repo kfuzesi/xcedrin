@@ -57,4 +57,13 @@
       color: black;
     }
   }
+
+  .builder-submit {
+    margin-left: 100px;
+
+    &:hover {
+      cursor: pointer;
+      color: black;
+    }
+  }
 }

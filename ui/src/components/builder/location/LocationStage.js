@@ -3,16 +3,7 @@ import './LocationStage.css';
 
 import { DropdownV2, NumberInput } from 'carbon-components-react';
 
-<<<<<<< HEAD
 function itemToString(item) {
-  return item === null ? null : item.text;
-=======
-function locationsToString(item) {
-  return item.name;
->>>>>>> branch 'master' of https://github.com/kfuzesi/xcedrin.git
-}
-
-function monthsToString(item) {
   return item.text;
 }
 
@@ -60,10 +51,11 @@ export default class LocationStage extends Component {
   		<div className="location-stage-title">Onboarding Month</div>
   		<div className="location-section">
   			<DropdownV2
+          onChange={value => this.props.updateForm({onboarding_quarter: value.selectedItem.text})}
   				key={'Onboarding Month'}
   				label={'Select desired onboarding month'}
   				items={months}
-  				itemToString={monthsToString}
+  				itemToString={itemToString}
   				className="position-dropdown"
   			/>
   		</div>
@@ -71,19 +63,19 @@ export default class LocationStage extends Component {
         <div className="location-name-input">
   	    <div className="location-stage-title">Location</div>
           <DropdownV2
+            onChange={value => this.props.updateForm({location: value.selectedItem.text})}
             label="Select a location for the position"
             items={locations}
-            itemToString={locationsToString}
+            itemToString={itemToString}
             className="location-dropdown"
           />
         </div>
         <div className="location-num-input">
           <NumberInput
+            onChange={evt => this.props.updateForm({num_tickets: evt.target.value})}
             id={`num-openings`}
             className="location-num-openings"
             label="# Openings"
-            // onChange={onChange()}
-            // onClick={onClick()}
             min={min}
             max={max}
             value={1}
