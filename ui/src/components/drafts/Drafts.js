@@ -63,7 +63,10 @@ export default class Drafts extends Component {
 	   let draftNames = aryOfDrafts.map((item) => {
 		   return (item.name)
 	   })
-       this.setState({draftNames : draftNames, draftMap : draftMap});
+       this.setState({
+            curSection: draftNames[0],
+       		draftNames : draftNames, 
+       		draftMap : draftMap});
        this.updateNavbar(draftNames[0]);
    });
    fetch('http://localhost:8080/demands')
