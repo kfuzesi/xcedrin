@@ -10,6 +10,7 @@ export default class Dashboard extends Component {
     this.state = {
       curSection: 'All',
       demands: [],
+      error: false
     };
   }
   getColumns(){
@@ -35,17 +36,27 @@ export default class Dashboard extends Component {
       })
       .catch(e => {
         console.log('Error!', e);
+        this.setState({
+          error: true
+        })
       });
   }
 
   render() {
     var columns = this.getColumns();
-    const { demands } = this.state;
-    return(
+    const { demands, error } = this.state;
+    return (
       <div className="dashboard">
-        <div className="dashboard-table">
-          <Table columns={ columns } data={ demands } />
-        </div>
+        { error ?
+          <div className="error">
+            <h3>Cannot get resources</h3>
+            <a href="/">Back</a>
+          </div>
+          :
+          <div className="dashboard-table">
+            <Table columns={ columns } data={ demands } />
+          </div>
+        }
       </div>
     );
   }
